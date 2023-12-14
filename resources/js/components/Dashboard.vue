@@ -1,0 +1,5 @@
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<template>
+    Welcome to admin dashboard
+</template>
