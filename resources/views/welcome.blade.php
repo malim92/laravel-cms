@@ -389,14 +389,9 @@
         }
     </style>
 </head>
-
 <body class="antialiased">
+    <h2 class="text-center">Homepage</h2>
 
-@extends('layouts.app')
-
-    @section('content')
-    <login></login>
-    @endsection
 </body>
 
 </html>
