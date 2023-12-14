@@ -8,6 +8,12 @@ use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
 {
+
+    public function __invoke()
+    {
+        return view('dashboard');
+    }
+    
     public function login(Request $request)
     {
         $request->validate([
@@ -35,4 +41,6 @@ class AdminController extends Controller
 
         return response()->json(['message' => 'Logged out successfully']);
     }
+
+    
 }

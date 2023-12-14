@@ -392,11 +392,7 @@
 
 <body class="antialiased">
 
-@extends('layouts.app')
 
-    @section('content')
-    <login></login>
-    @endsection
 </body>
 
 </html>
