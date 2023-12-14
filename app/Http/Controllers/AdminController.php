@@ -20,7 +20,7 @@ class AdminController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+    }
     //     $credentials = $request->only('email', 'password');
 
     //     if (Auth::attempt($credentials)) {
@@ -41,11 +41,6 @@ class AdminController extends Controller
 
     //     return response()->json(['message' => 'Logged out successfully']);
     // }
-
-    public function __invoke()
-    {
-        return view('admin.layouts.app');
-    }
 
     
 }
