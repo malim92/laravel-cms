@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | Starter</title>
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script> 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -41,7 +42,7 @@
                         <a href="#" class="dropdown-item">
 
                             <div class="media">
-                                <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <img src="https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Brad Diesel
@@ -57,7 +58,7 @@
                         <a href="#" class="dropdown-item">
 
                             <div class="media">
-                                <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <img src="https://adminlte.io/themes/v3/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         John Pierce
@@ -73,7 +74,7 @@
                         <a href="#" class="dropdown-item">
 
                             <div class="media">
-                                <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <img src="https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Nora Silvester
@@ -163,28 +164,29 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                         <li class="nav-item">
-                            <a href="/admin/dashboard" class="nav-link">
+                            <router-link to="admin/dashboard" active-class="active" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
                                 </p>
-                            </a>
+                            </router-link>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/home" class="nav-link">
-                                <i class="fas fa-home"></i>
+                            
+                            <router-link to="admin/home" active-class="active" class="nav-link">
+                                <i class="nav-icon fas fa-calendar-alt"></i>
                                 <p>
-                                    HomePage
+                                    Home Page
                                 </p>
-                            </a>
+                            </router-link>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/about" class="nav-link">
+                            <router-link to="admin/about" active-class="active" class="nav-link">
                                 <i class="fas fa-address-card"></i>
                                 <p>
                                     About Us
                                 </p>
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                 </nav>
@@ -199,7 +201,7 @@
             <!--  -->
 
 
-            <div class="content">
+            <!-- <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-6">
@@ -253,7 +255,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div> -->
 
         </div>
 

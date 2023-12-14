@@ -3,18 +3,18 @@ import HomePage from './pages/Home/HomePage.vue';
 
 export default [
     {
-        path: 'admin/dashboard',
+        path: '/admin/dashboard',
         name: 'admin.dashboard',
         component: Dashboard,
     },
     {
-        path: 'admin/home',
+        path: '/admin/home',
         name: 'admin.home',
         component: HomePage,
-    },
-    {
-        path: 'admin/about',
-        name: 'admin.about',
-        component: AboutUs,
     }
+    // {
+    //     path: 'admin/about',
+    //     name: 'admin.about',
+    //     component: AboutUs,
+    // }
 ]
