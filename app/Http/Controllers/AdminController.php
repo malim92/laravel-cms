@@ -8,12 +8,27 @@ use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
 {
+<<<<<<< HEAD
     // public function login(Request $request)
     // {
     //     $request->validate([
     //         'email' => 'required|email',
     //         'password' => 'required',
     //     ]);
+=======
+
+    public function __invoke()
+    {
+        return view('admin.layouts.app');
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+>>>>>>> 5b3b640
 
     //     $credentials = $request->only('email', 'password');
 
@@ -40,4 +55,6 @@ class AdminController extends Controller
     {
         return view('admin.layouts.app');
     }
+
+    
 }

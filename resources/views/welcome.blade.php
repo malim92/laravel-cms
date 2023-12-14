@@ -392,6 +392,10 @@
 <body class="antialiased">
     <h2 class="text-center">Homepage</h2>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5b3b640
 </body>
 
 </html>
