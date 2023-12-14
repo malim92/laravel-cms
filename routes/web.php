@@ -24,7 +24,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/admin/dashboard', function(){
         
     // });
-    Route::get('/admin/dashboard', AdminController::class);
+    Route::get('{view}', AdminController::class)->where('view', '(.*)');
     Route::get('/admin', 'AdminController@index')->name('admin.home');
 });
 

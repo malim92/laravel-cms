@@ -9,7 +9,8 @@ import { createApp } from 'vue';
 import 'admin-lte/plugins/jquery/jquery.min.js';
 import 'admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js';
 import 'admin-lte/dist/js/adminlte.min.js?v=3.2.0';
-
+import {createRouter, createWebHistory} from 'vue-router';
+import Routes from './routes.js';
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -17,6 +18,13 @@ import 'admin-lte/dist/js/adminlte.min.js?v=3.2.0';
  */
 
 const app = createApp({});
+
+const router = createRouter({
+    routes: Routes,
+    history: createWebHistory(),
+});
+
+app.use(router);
 
 import ExampleComponent from './components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);

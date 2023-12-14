@@ -11,9 +11,9 @@ class AdminController extends Controller
 
     public function __invoke()
     {
-        return view('dashboard');
+        return view('admin.layouts.app');
     }
-    
+
     public function login(Request $request)
     {
         $request->validate([
