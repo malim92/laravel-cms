@@ -8,14 +8,6 @@ use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
 {
-<<<<<<< HEAD
-    // public function login(Request $request)
-    // {
-    //     $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //     ]);
-=======
 
     public function __invoke()
     {
@@ -28,7 +20,6 @@ class AdminController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
->>>>>>> 5b3b640
 
     //     $credentials = $request->only('email', 'password');
 

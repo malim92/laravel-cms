@@ -21,16 +21,9 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth'])->group(function () {
-<<<<<<< HEAD
-    // Route::get('/admin/dashboard', function () {
-    //     return view('dashboard');
-    // });
-    Route::get('{view}', [AdminController::class])->where('view', '(.*)');
-=======
     // Route::get('/admin/dashboard', function(){
         
     // });
     Route::get('{view}', AdminController::class)->where('view', '(.*)');
     Route::get('/admin', 'AdminController@index')->name('admin.home');
->>>>>>> 5b3b640
 });
