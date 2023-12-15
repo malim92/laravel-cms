@@ -1,5 +1,5 @@
 import Dashboard from './components/Dashboard.vue';
-import HomePage from './pages/Home/HomePage.vue';
+import HomePage from './components/HomePage.vue';
 
 export default [
     {

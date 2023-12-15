@@ -164,16 +164,17 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                         <li class="nav-item">
-                            <router-link to="admin/dashboard" active-class="active" class="nav-link">
+                            <router-link to="/admin/dashboard" active-class="active" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Dashboard
+                                    Dashboards
                                 </p>
+                                
                             </router-link>
                         </li>
                         <li class="nav-item">
                             
-                            <router-link to="admin/home" active-class="active" class="nav-link">
+                            <router-link to="/admin/home" active-class="active" class="nav-link">
                                 <i class="nav-icon fas fa-calendar-alt"></i>
                                 <p>
                                     Home Page
@@ -181,12 +182,12 @@
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link to="admin/about" active-class="active" class="nav-link">
+                            <!-- <router-link to="/admin/about" active-class="active" class="nav-link">
                                 <i class="fas fa-address-card"></i>
                                 <p>
                                     About Us
                                 </p>
-                            </router-link>
+                            </router-link> -->
                         </li>
                     </ul>
                 </nav>
