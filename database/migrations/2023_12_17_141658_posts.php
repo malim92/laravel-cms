@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('content')->nullable();
             $table->string('image')->nullable();
-            $table->string('status');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

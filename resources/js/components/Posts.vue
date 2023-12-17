@@ -2,44 +2,102 @@
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0">Posts page</h1>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Hero Title</h5>
-                  <div>
+        <div class="card">
+          <div class="card-body">
+            <h2 class="text-center card-title">All Posts</h2>
+            <table>
+              <tr>
+                <th>Company</th>
+                <th>Contact</th>
+                <th>Country</th>
+                <th>Company</th>
+                <th>Contact</th>
+                <th>Contact</th>
+              </tr>
+              <tr v-for="post in posts" :key="post.id">
+                  <td>
+                    <p class="text-center">{{ post.id }}</p>
+                  </td>
+                  <td>
+                    <p class="text-center">{{ post.title }}</p>
+                  </td>
+                  <td>
+                    <p class="text-center">{{ post.content }}</p>
+                  </td>
+                  <td>
+                    <p class="text-center">{{ post.type }}</p>
+                  </td>
+                  <td>
+                    <p class="text-center">{{ post.status }}</p>
+                  </td>
+                  <td>
+                    <p class="text-center">{{ post.image }}</p>
+                  </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Posts</a></li>
+          <li class="breadcrumb-item active">Home Page</li>
+        </ol>
+        <div class="col">
+          <hr />
+          <h1 class="m-0 padding">Posts page</h1>
+          <br />
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Hero Title</h5>
+              <table>
+                <tr>
+                  <td>
+                    <p class="text-center">Post Title</p>
                     <input
+                      v-model="postTitle"
                       type="text"
-                      v-model="heroTitle"
-                      @input="handleInput"
-                      placeholder="Type something..."
+                      placeholder="Title"
                     />
+                  </td>
+                  <td>
+                    <p class="text-center">Post Type</p>
+                    <input v-model="postType" type="text" placeholder="Type" />
+                  </td>
+                  <td>
+                    <p class="text-center">Content</p>
                     <input
+                      v-model="postContent"
                       type="text"
-                      v-model="heroDescription"
-                      placeholder="Type something else..."
+                      placeholder="Content"
                     />
+                  </td>
+                  <td>
+                    <p class="text-center">Status</p>
+
+                    <label class="toggle-switch">
+                      <input type="checkbox" v-model="postStatus" />
+                      <span class="slider round"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <p class="text-center">Upload Image</p>
                     <input
                       type="file"
                       ref="fileInput"
                       @change="handleFileChange"
                     />
-
-                    <button @click="submitForm">Submit</button>
-                  </div>
-                </div>
-              </div>
+                  </td>
+                </tr>
+              </table>
+              <button @click="submitForm">Submit</button>
             </div>
-            
           </div>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Home Page</li>
-          </ol>
         </div>
       </div>
     </div>
@@ -50,10 +108,16 @@
 export default {
   data() {
     return {
-      heroTitle: "",
-      heroDescription: "",
+      posts: [],
+      postTitle: "",
+      postType: "",
+      postContent: "",
+      postStatus: "",
       selectedFile: null,
     };
+  },
+  mounted() {
+    this.fetchPosts();
   },
   methods: {
     handleInput() {
@@ -63,17 +127,19 @@ export default {
       this.selectedFile = event.target.files[0];
     },
     submitForm() {
-      let formData = new FormData();
-      formData.append("heroTitle", this.heroTitle);
-      formData.append("heroDescription", this.heroDescription);
-      formData.append("logoFile", this.selectedFile);
+      let postFormData = new FormData();
+      postFormData.append("postTitle", this.postTitle);
+      postFormData.append("postType", this.postType);
+      postFormData.append("postContent", this.postContent);
+      postFormData.append("postStatus", this.postStatus == true ? 1 : 0);
+      postFormData.append("postFile", this.selectedFile);
+      axios;
       axios
-        axios.post("/api/store", formData)
+        .post("/api/post", postFormData)
         .then((response) => {
           console.log(response.data.message);
         })
         .catch((error) => {
-          console.log(this.selectedFile, "this.selectedFile");
           if (error.response) {
             console.error(
               "Server responded with an error status:",
@@ -87,18 +153,31 @@ export default {
           }
         });
     },
-    fetchData() {
+    fetchPosts() {
       axios
-        .get("/api/fetch-data")
+        .get("/api/posts")
         .then((response) => {
           console.log(" fetching response:", response);
-          this.heroTitle = response.data.data.input_value;
-          this.heroDescription = response.data.data.input_value;
+          //   this.heroTitle = response.data.data.input_value;
+          //   this.heroDescription = response.data.data.input_value;
+          this.posts = response.data.posts;
         })
         .catch((error) => {
-          console.error("Error fetching data:", error);
+          if (error.response) {
+            console.error(
+              "Server responded with an error status:",
+              error.response.status
+            );
+            console.log("Errors from the server:", error.response.data.errors);
+          } else if (error.request) {
+            console.error("No response received from the server");
+          } else {
+            console.error("Error setting up the request:", error.message);
+          }
         });
     },
   },
 };
 </script>
+
+<style src="../../resources/css/posts.css" />

@@ -649,10 +649,12 @@ strong {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 50%;
+    width: 50%!important;
     height: 55%;
     transform: rotate(-35deg) translateY(55px);
     transition: all ease 0.5s;
+    background-size: cover!important;
+    opacity: 0.5;
 }
 
 .services-icon {

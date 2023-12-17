@@ -87,7 +87,7 @@ export default {
           }
         });
     },
-    fetchData() {
+    fetchHeroData() {
       axios
         .get("/api/fetch-data")
         .then((response) => {

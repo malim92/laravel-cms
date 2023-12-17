@@ -18,6 +18,9 @@ export default defineConfig({
                     includeAbsolute: false,
                 },
             },
+            optimizeDeps: {
+                exclude: ['@tiptap/starter-kit']
+              }
         }),
     ],
     resolve: {

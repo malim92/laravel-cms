@@ -17,6 +17,10 @@
         "vue": "^3.2.37"
     },
     "dependencies": {
+        "@tinymce/tinymce-vue": "^5.1.1",
+        "@tiptap/pm": "^2.1.13",
+        "@tiptap/starter-kit": "^2.1.13",
+        "@tiptap/vue-3": "^2.1.13",
         "admin-lte": "3.0",
         "jquery": "^3.7.1",
         "vue-router": "^4.2.5"
