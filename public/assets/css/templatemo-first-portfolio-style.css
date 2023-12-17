@@ -519,11 +519,11 @@ https://templatemo.com/tm-578-first-portfolio
   }
   
   .hero-image {
-    position: absolute;
+    position: relative;
     z-index: 22;
     top: 0;
-    width: 100%;
-    min-width: 550px;
+    left: 120px;
+    width: 50%;
   }
   
   .hero svg {
@@ -994,9 +994,7 @@ https://templatemo.com/tm-578-first-portfolio
       height: 400px;
     }
   
-    .hero-image {
-      min-width: 650px;
-    }
+   
     
     .hero-title,
       .hero h2 {

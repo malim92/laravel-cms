@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', 'AdminController@login');
 Route::post('/logout', 'AdminController@logout')->middleware('auth:sanctum');
+Route::post('/store', 'AdminController@store');
+// Route::get('/fetch-data', 'AdminController@fetchData');

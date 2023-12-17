@@ -79,7 +79,7 @@
   </nav>
 
   <main>
-
+  
     <section class="hero d-flex justify-content-center align-items-center" id="section_1">
       <div class="container">
         <div class="row">
@@ -88,20 +88,20 @@
             <div class="hero-text">
               <div class="hero-title-wrap d-flex align-items-center mb-4">
 
-                <h1 class="hero-title ms-3 mb-0">World News!</h1>
+                <h1 class="hero-title ms-3 mb-0">{{$heroSection->hero_title}}</h1>
               </div>
 
-              <h2 class="mb-4">The latest news around the world</h2>
+              <h2 class="mb-4">{{$heroSection->hero_desc}}</h2>
               <p class="mb-4"><a class="custom-btn btn custom-link" href="#section_2">Read More</a></p>
             </div>
           </div>
-
+          
           <div class="col-lg-5 col-12 position-relative">
             <div class="hero-image-wrap"></div>
-            <img src="images/portrait-happy-excited-man-holding-laptop-computer.png" class="hero-image img-fluid" alt="">
-          </div>
-
+            <img src="{{ asset('storage/' . $heroSection->logo_path) }}" class="hero-image img-fluid" alt="Hero Image">
         </div>
+          </div>
+          
       </div>
 
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
