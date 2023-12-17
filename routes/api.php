@@ -22,4 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', 'AdminController@login');
 Route::post('/logout', 'AdminController@logout')->middleware('auth:sanctum');
 Route::post('/store', 'AdminController@store');
-Route::get('/fetch-data', 'AdminController@fetchData');
+// Route::get('/fetch-data', 'AdminController@fetchData');

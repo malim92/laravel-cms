@@ -12,7 +12,8 @@ class heroSection extends Model
     protected $table = 'herosection';
 
       protected $fillable = [
-        'fieldName',
+        'hero_title',
+        'hero_desc',
     ];
 
 }

@@ -15,13 +15,9 @@ use App\Http\Controllers\auth\LoginController;
 */
 
 Auth::routes();
-// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
-
-
-
-Route::post('/api/store',[AdminController::class,'store']);
 Route::middleware(['auth'])->group(function () {
+    Route::post('/api/store',[AdminController::class,'store']);
     Route::get('/admin/dashboard', AdminController::class);
     Route::post('/store-data', 'AdminController@storeData');
     Route::get('/admin/home', AdminController::class);

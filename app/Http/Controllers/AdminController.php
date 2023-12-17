@@ -15,27 +15,6 @@ class AdminController extends Controller
         return view('admin.layouts.app');
     }
 
-    public function storeData(Request $request)
-    {
-        $validatedData = $request->validate([
-            'fieldName' => 'required|string|max:255',
-        ]);
-
-        try {
-
-            $newData = new heroSection();
-            $newData->fieldName = $validatedData['fieldName'];
-
-            // Save the data to the database
-            $newData->save();
-
-            return response()->json(['message' => 'Data stored successfully'], 200);
-        } catch (\Exception $e) {
-            // Handle the exception, e.g., log the error
-            return response()->json(['error' => 'Failed to store data'], 500);
-        }
-    }
-
     public function login(Request $request)
     {
         $request->validate([
@@ -44,12 +23,25 @@ class AdminController extends Controller
         ]);
     }
 
-    
     public function store(Request $request)
     {
-        heroSection::create(['fieldName' => $request->input('inputValue')]);
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'heroTitle' => 'required|string|max:255',
+            'heroDescription' => 'required|string|max:255',
+        ]);
 
-        return response()->json(['message' => 'Data stored successfully']);
+        try {
+            $newData = heroSection::create([
+                'hero_title' => $validatedData['heroTitle'],
+                'hero_desc' => $validatedData['heroDescription'],
+            ]);
+
+            return response()->json(['message' => 'Data stored successfully', 'data' => $newData]);
+        } catch (\Exception $e) {
+            // Handle the exception, e.g., log the error
+            return response()->json(['error' => 'Failed to store data'], 500);
+        }
     }
 
     public function fetchData()
@@ -60,25 +52,19 @@ class AdminController extends Controller
     }
 
     public function displayData()
-    {
-        $dataFromDatabase = heroSection::latest()->value('fieldName'); // Adjust the query based on your needs
+{
+    $latestHeroSection = heroSection::latest()->first();
 
-        return view('welcome', compact('dataFromDatabase'));
+    if ($latestHeroSection) {
+        $heroTitle = $latestHeroSection->hero_title;
+        $heroDescription = $latestHeroSection->hero_desc;
+    } else {
+        $heroTitle = null;
+        $heroDescription = null;
     }
 
-    //     $credentials = $request->only('email', 'password');
-
-    //     if (Auth::attempt($credentials)) {
-    //         $user = Auth::user();
-    //         $token = $user->createToken('token-name')->plainTextToken;
-
-    //         return response()->json(['token' => $token, 'user' => $user], 200);
-    //     }
-
-    //     throw ValidationException::withMessages([
-    //         'email' => ['The provided credentials are incorrect.'],
-    //     ]);
-    // }
+    return view('welcome', compact('heroTitle', 'heroDescription'));
+}
 
     // public function logout(Request $request)
     // {

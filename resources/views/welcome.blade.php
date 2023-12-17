@@ -88,10 +88,10 @@
             <div class="hero-text">
               <div class="hero-title-wrap d-flex align-items-center mb-4">
 
-                <h1 class="hero-title ms-3 mb-0">{{$dataFromDatabase}}</h1>
+                <h1 class="hero-title ms-3 mb-0">{{$heroTitle}}</h1>
               </div>
 
-              <h2 class="mb-4">The latest news around the world</h2>
+              <h2 class="mb-4">{{$heroDescription}}</h2>
               <p class="mb-4"><a class="custom-btn btn custom-link" href="#section_2">Read More</a></p>
             </div>
           </div>

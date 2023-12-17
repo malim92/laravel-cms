@@ -8,9 +8,22 @@
             <div class="col-lg-6">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">About us</h5>
-                      <input type="text" v-model="inputValue" @input="handleInput" placeholder="Type something...">
+                  <h5 class="card-title">Hero Title</h5>
+                  <div>
+                    <input
+                      type="text"
+                      v-model="heroTitle"
+                      @input="handleInput"
+                      placeholder="Type something..."
+                    />
+                    <input
+                      type="text"
+                      v-model="heroDescription"
+                      placeholder="Type something else..."
+                    />
 
+                    <button @click="submitForm">Submit</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -40,26 +53,44 @@
 export default {
   data() {
     return {
-      inputValue: "",
+      heroTitle: "",
+      heroDescription: "",
     };
   },
   methods: {
     handleInput() {
+      console.log("user typing...");
+    },
+    submitForm() {
       axios
-        .post("/api/store", { inputValue: this.inputValue })
+        .post("/api/store", {
+          heroTitle: this.heroTitle,
+          heroDescription: this.heroDescription,
+        })
         .then((response) => {
           console.log(response.data.message);
         })
         .catch((error) => {
-          console.log(this.inputValue,'this.inputValue');
-          console.error("Error saving data:", error);
+          if (error.response) {
+            console.error(
+              "Server responded with an error status:",
+              error.response.status
+            );
+            console.log("Errors from the server:", error.response.data.errors);
+          } else if (error.request) {
+            console.error("No response received from the server");
+          } else {
+            console.error("Error setting up the request:", error.message);
+          }
         });
     },
     fetchData() {
       axios
         .get("/api/fetch-data")
         .then((response) => {
-          this.inputValue = response.data.data.input_value;
+          console.log(" fetching response:", response);
+          this.heroTitle = response.data.data.input_value;
+          this.heroDescription = response.data.data.input_value;
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
