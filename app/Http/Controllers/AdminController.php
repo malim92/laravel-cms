@@ -58,7 +58,7 @@ class AdminController extends Controller
     public function getPosts()
     {
         $posts = posts::where('status', 1)->get();
-        
+
         return response()->json(['posts' => $posts]);
     }
 
@@ -75,8 +75,7 @@ class AdminController extends Controller
 
     public function createPost(Request $request)
     {
-        Log::debug('createPost 11');
-        Log::debug($request);
+
         $validatedData = $request->validate([
             'postTitle' => 'required|string|max:255',
             'postType' => 'required|string|max:255',
@@ -86,14 +85,67 @@ class AdminController extends Controller
         ]);
 
         try {
-            $post = posts::create($validatedData);
-
+            
+            if (isset($validatedData['postFile'])) {
+                $post_file = $validatedData['postFile'];
+            } else $post_file = null;
+            $postData = posts::create([
+                'title' => $validatedData['postTitle'],
+                'type' => $validatedData['postType'],
+                'content' => $validatedData['postContent'],
+                'status' => $validatedData['postStatus'],
+                'image' => $post_file,
+            ]);
+            $post = posts::create($postData);
             return response()->json(['message' => 'Post created successfully', 'post' => $post]);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to create post'], 500);
+            return response()->json(['error' => 'Failed to create post' . $e], 500);
         }
     }
-    
+
+    public function updatePost(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'postTitle' => 'required|string|max:255',
+            'postType' => 'required|string|max:255',
+            'postContent' => 'required|string|max:1255',
+            'postStatus' => 'required|boolean',
+            'postFile' => 'required|string|max:255',
+        ]);
+
+        try {
+
+            $postData = [
+                'title' => $validatedData['postTitle'],
+                'type' => $validatedData['postType'],
+                'content' => $validatedData['postContent'],
+                'status' => $validatedData['postStatus'],
+                'image' => $validatedData['postFile'],
+            ];
+            $post = posts::findOrFail($id);
+            
+            $post->update($postData);
+
+            return response()->json(['message' => 'Post updated successfully', 'post' => $post]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to update post'], 500);
+        }
+    }
+
+    public function deletePost($id)
+    {
+        try {
+            $post = posts::findOrFail($id);
+            Log::debug('deletePost $post');
+            Log::debug($post);
+            $post->delete();
+
+            return response()->json(['message' => 'Post deleted successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete post'], 500);
+        }
+    }
+
     public function store_post(Request $request)
     {
         Log::debug('$request 11');
@@ -144,12 +196,9 @@ class AdminController extends Controller
         $heroSection = heroSection::latest()->first();
         // Log::debug('$heroSection');
         // Log::debug($heroSection);
-        Log::debug($heroSection);
-        Log::debug($heroSection);
         $posts = posts::latest()->take(4)->get();
 
         return view('welcome', compact('heroSection', 'posts'));
-
     }
 
     public function logout(Request $request)

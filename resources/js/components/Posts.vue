@@ -135,7 +135,7 @@ export default {
       postFormData.append("postFile", this.selectedFile);
       axios;
       axios
-        .post("/api/post", postFormData)
+        .post("/create-post", postFormData)
         .then((response) => {
           console.log(response.data.message);
         })
