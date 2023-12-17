@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\WebCrawlerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,5 @@ Route::post('/createPost', [AdminController::class, 'createPost']);
 Route::post('/edit-post/{id}', [AdminController::class, 'updatePost']);
 Route::delete('/post-delete/{id}', [AdminController::class, 'deletePost']);
 // Route::get('/fetch-data', 'AdminController@fetchHeroData');
+
+Route::get('/crawl-website', [WebCrawlerController::class, 'crawlWebsite']);
