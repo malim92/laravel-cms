@@ -182,12 +182,12 @@
                             </router-link>
                         </li>
                         <li class="nav-item">
-                            <!-- <router-link to="/admin/about" active-class="active" class="nav-link">
+                            <router-link to="/admin/posts" active-class="active" class="nav-link">
                                 <i class="fas fa-address-card"></i>
                                 <p>
-                                    About Us
+                                    Posts
                                 </p>
-                            </router-link> -->
+                            </router-link>
                         </li>
                     </ul>
                 </nav>

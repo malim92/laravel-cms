@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Models\heroSection;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -23,18 +24,27 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store_hero(Request $request)
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
             'heroTitle' => 'required|string|max:255',
             'heroDescription' => 'required|string|max:255',
+            'logoFile' => 'image|mimes:jpeg,webp,png,jpg,gif|max:2048',
         ]);
+        
+        // Log::debug($request);
+        if ($request->hasFile('logoFile')) {
+            $image = $request->file('logoFile');
+            $imagePath = $image->store('images', 'public');
+            $validatedData['logoFile'] = $imagePath;
+        }
 
         try {
             $newData = heroSection::create([
                 'hero_title' => $validatedData['heroTitle'],
                 'hero_desc' => $validatedData['heroDescription'],
+                'logo_path' => $validatedData['logoFile'],
             ]);
 
             return response()->json(['message' => 'Data stored successfully', 'data' => $newData]);
@@ -52,26 +62,24 @@ class AdminController extends Controller
     }
 
     public function displayData()
-{
-    $latestHeroSection = heroSection::latest()->first();
+    {
+        $latestHeroSection = heroSection::latest()->first();
 
-    if ($latestHeroSection) {
-        $heroTitle = $latestHeroSection->hero_title;
-        $heroDescription = $latestHeroSection->hero_desc;
-    } else {
-        $heroTitle = null;
-        $heroDescription = null;
+        
+        $heroSection = heroSection::latest()->first();
+        // Log::debug('$heroSection');
+        // Log::debug($heroSection);
+
+        return view('welcome', compact('heroSection'));
+
     }
 
-    return view('welcome', compact('heroTitle', 'heroDescription'));
-}
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
 
-    // public function logout(Request $request)
-    // {
-    //     $request->user()->currentAccessToken()->delete();
-
-    //     return response()->json(['message' => 'Logged out successfully']);
-    // }
+        return response()->json(['message' => 'Logged out successfully']);
+    }
 
 
 }

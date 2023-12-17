@@ -14,6 +14,7 @@ class heroSection extends Model
       protected $fillable = [
         'hero_title',
         'hero_desc',
+        'logo_path',
     ];
 
 }

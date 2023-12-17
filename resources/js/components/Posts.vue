@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Home page</h1>
+          <h1 class="m-0">Posts page</h1>
           <div class="row">
             <div class="col-lg-6">
               <div class="card">

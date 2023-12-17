@@ -17,10 +17,11 @@ use App\Http\Controllers\auth\LoginController;
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/api/store',[AdminController::class,'store']);
+    Route::post('/api/store',[AdminController::class,'store_hero']);
+    Route::post('/api/post',[AdminController::class,'store_post']);
     Route::get('/admin/dashboard', AdminController::class);
-    Route::post('/store-data', 'AdminController@storeData');
     Route::get('/admin/home', AdminController::class);
+    Route::get('/admin/posts', AdminController::class);
 
 });
 
