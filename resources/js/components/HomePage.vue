@@ -9,7 +9,7 @@
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">About us</h5>
-                     <input type="text" v-model="inputValue" placeholder="Type something...">
+                      <input type="text" v-model="inputValue" @input="handleInput" placeholder="Type something...">
 
                 </div>
               </div>
@@ -40,8 +40,31 @@
 export default {
   data() {
     return {
-      inputValue: '',
+      inputValue: "",
     };
+  },
+  methods: {
+    handleInput() {
+      axios
+        .post("/api/store", { inputValue: this.inputValue })
+        .then((response) => {
+          console.log(response.data.message);
+        })
+        .catch((error) => {
+          console.log(this.inputValue,'this.inputValue');
+          console.error("Error saving data:", error);
+        });
+    },
+    fetchData() {
+      axios
+        .get("/api/fetch-data")
+        .then((response) => {
+          this.inputValue = response.data.data.input_value;
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    },
   },
 };
 </script>

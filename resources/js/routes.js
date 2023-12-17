@@ -1,5 +1,6 @@
 import Dashboard from './components/Dashboard.vue';
 import HomePage from './components/HomePage.vue';
+import AboutUs from './components/AboutUs.vue';
 
 export default [
     {
@@ -11,10 +12,10 @@ export default [
         path: '/admin/home',
         name: 'admin.home',
         component: HomePage,
+    },
+    {
+        path: '/admin/about',
+        name: 'admin.about',
+        component: AboutUs,
     }
-    // {
-    //     path: 'admin/about',
-    //     name: 'admin.about',
-    //     component: AboutUs,
-    // }
 ]

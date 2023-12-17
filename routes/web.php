@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,17 +14,18 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Auth::routes();
+Auth::routes();
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 
+
+
+Route::post('/api/store',[AdminController::class,'store']);
 Route::middleware(['auth'])->group(function () {
-    // Route::get('/admin/dashboard', function(){
-        
-    // });
-    Route::get('{view}', AdminController::class)->where('view', '(.*)');
-    Route::get('/admin', 'AdminController@index')->name('admin.home');
+    Route::get('/admin/dashboard', AdminController::class);
+    Route::post('/store-data', 'AdminController@storeData');
+    Route::get('/admin/home', AdminController::class);
+
 });
+
+Route::get('/',[AdminController::class, 'displayData']);
