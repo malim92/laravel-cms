@@ -35,6 +35,6 @@ Route::post('/createPost', [AdminController::class, 'createPost']);
 //      "postFile":'path',
 //   }
 
-Route::put('/edit-post/{id}', [AdminController::class, 'updatePost']);
+Route::post('/edit-post/{id}', [AdminController::class, 'updatePost']);
 Route::delete('/post-delete/{id}', [AdminController::class, 'deletePost']);
 // Route::get('/fetch-data', 'AdminController@fetchHeroData');

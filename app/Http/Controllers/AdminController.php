@@ -84,6 +84,12 @@ class AdminController extends Controller
             'postFile' => 'image|mimes:jpeg,webp,png,jpg,gif|max:2048',
         ]);
 
+        if ($request->hasFile('postFile')) {
+            // Store the image and get its path
+            $imagePath = $request->file('postFile')->store('images/posts', 'public');
+            $validatedData['postFile'] = $imagePath;
+        }
+
         try {
             
             if (isset($validatedData['postFile'])) {
@@ -105,14 +111,20 @@ class AdminController extends Controller
 
     public function updatePost(Request $request, $id)
     {
+
         $validatedData = $request->validate([
             'postTitle' => 'required|string|max:255',
-            'postType' => 'required|string|max:255',
             'postContent' => 'required|string|max:1255',
+            'postType' => 'required|string|max:255',
             'postStatus' => 'required|boolean',
-            'postFile' => 'required|string|max:255',
+            'postFile' => 'image|mimes:jpeg,webp,png,jpg,gif|max:2048',
         ]);
 
+        if ($request->hasFile('postFile')) {
+            // Store the image and get its path
+            $imagePath = $request->file('postFile')->store('images/posts', 'public');
+            $validatedData['postFile'] = $imagePath;
+        }
         try {
 
             $postData = [
@@ -123,6 +135,7 @@ class AdminController extends Controller
                 'image' => $validatedData['postFile'],
             ];
             $post = posts::findOrFail($id);
+        
             
             $post->update($postData);
 
